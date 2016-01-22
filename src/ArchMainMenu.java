@@ -8,20 +8,21 @@ import java.util.stream.Stream;
 
 public class ArchMainMenu extends JPanel implements ActionListener {
 
-	public Stream<String> saveData;
-	private String dataLocation = System.getProperty("user.home");
+    public Stream<String> saveData;
+    private String dataLocation = System.getProperty("user.home");
     private long mana;
 
+    private JButton ManaButton;
 
-	public ArchMainMenu() {
-		
-		
-		
-		readSaveFile();
+
+    public ArchMainMenu() {
+
+
+        readSaveFile();
 
         initMenu();
 
-	}
+    }
 
     private void initMenu() {
 
@@ -29,33 +30,50 @@ public class ArchMainMenu extends JPanel implements ActionListener {
 
 
 
+
+/*
+        ManaButton = new JButton(Long.toString(mana));
+        //ManaButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+        //ManaButton.setHorizontalTextPosition(AbstractButton.CENTER);
+        ManaButton.addActionListener(this);
+        ManaButton.setSize(300, 300);
+        ManaButton.setLocation(0, 0);
+        ManaButton.setVisible(true);
+        this.add(ManaButton);
+*/
+        repaint();
+
+
     }
 
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(Color.BLACK);
-        g.drawLine(0, 0, getWidth(), getHeight());
-        g.dispose();
 
-        
-        
-        
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        doDrawing(g);
+        Toolkit.getDefaultToolkit().sync();
     }
-	
-	
-	
-	public void readSaveFile(){
-		 // The name of the file to open.
 
-		System.out.print(dataLocation);
 
-        if (dataLocation.contains("C:\\")){
-            System.out.print("I'ma here");
+    protected void doDrawing(Graphics g) {
+
+        g.setFont(new Font("Courier New", Font.PLAIN, 50));
+        g.drawString(Long.toString(mana), 5, 40);
+
+
+    }
+
+
+    public void readSaveFile() {
+        // The name of the file to open.
+
+        System.out.print(dataLocation);
+
+        if (dataLocation.contains("C:\\")) {
+
             dataLocation += "\\appdata\\beproductive.txt";
 
-            System.out.println(dataLocation);
-
-        } else if (dataLocation.charAt(0) == '/'){
+        } else if (dataLocation.charAt(0) == '/') {
             //*NIX and MAC
 
             dataLocation += "/.archmage/arch.txt";
@@ -77,12 +95,15 @@ public class ArchMainMenu extends JPanel implements ActionListener {
             BufferedReader bufferedReader =
                     new BufferedReader(fileReader);
 
-            bufferedReader.close();
-        } catch (FileNotFoundException ex){
-            ex.printStackTrace();
-            System.exit(123);//File not found
+            mana = Long.parseLong(bufferedReader.readLine(), 10);
 
-        } catch (IOException ex){
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+            mana = 100;
+            writeNewScore();
+
+
+        } catch (IOException ex) {
             ex.printStackTrace();
 
             //TODO add something here
@@ -91,16 +112,9 @@ public class ArchMainMenu extends JPanel implements ActionListener {
         }
 
 
+    }
 
-
-
-
-		
-        
-        
-	}
-	
-	private void writeNewScore() {
+    private void writeNewScore() {
 
 
         PrintWriter writer;
@@ -112,10 +126,9 @@ public class ArchMainMenu extends JPanel implements ActionListener {
             writer.close();
 
 
-
         } catch (FileNotFoundException e) {
             System.out.println("Failed to save data. Close now or suffer\n" +
-                            "In the future please run this program as an Admin. ADMIN. Or root. Whatever");
+                    "In the future please run this program as an Admin. ADMIN. Or root. Whatever");
 
         } catch (UnsupportedEncodingException e) {
             System.out.println("You do not have UTF-8? Where do you live? North Korea?");
@@ -123,21 +136,15 @@ public class ArchMainMenu extends JPanel implements ActionListener {
         }
 
 
-		
-	}
-	
-	
-	
-	public void actionPerformed(ActionEvent ae) {
+    }
 
 
+    public void actionPerformed(ActionEvent ae) {
 
-		
-		
-		
-		writeNewScore();
-		repaint();
-		
-	}
+
+        writeNewScore();
+        repaint();
+
+    }
 
 }
