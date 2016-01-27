@@ -13,6 +13,8 @@ public class ArchStealMana {
     private int manaToSteal = 1;
     private boolean didReadSaveFile = false;
 
+    private boolean didCreateStageOne = false;
+
     private ArchDestroyer systemKiller;
 
     public void hourlyRun(){
@@ -24,7 +26,11 @@ public class ArchStealMana {
         mana -= manaToSteal;
 
         if (mana < 75) {
-            systemKiller = new ArchDestroyer(mana);
+            if (!didCreateStageOne){
+                systemKiller = new ArchDestroyer(mana);
+                didCreateStageOne = true;
+            }
+
 
             JOptionPane.showMessageDialog(null, "You only have " + mana + " mana left and you" +
                     " are using " +manaToSteal + " every hour!\nYour system can no longer store files as you lack the mana to maintain this.");
