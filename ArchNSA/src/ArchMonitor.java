@@ -11,13 +11,12 @@ public class ArchMonitor {
     private long mana;
 
 
-    private final long HOUR = 3600000;
+    private final long HOUR = 100000;//3600000
     private final ArchStealMana ArchThief = new ArchStealMana();
 
 
     protected ArchMonitor() {
 
-        scanForMana();
         initManaStealer();
 
     }
@@ -37,15 +36,6 @@ public class ArchMonitor {
     }
 
 
-    private void scanForMana() {
-
-
-    }
-
-    private void hourlyRun() {
-
-
-    }
 
 
 }

@@ -12,6 +12,8 @@ public class ArchMainMenu extends JPanel implements ActionListener {
     private String dataLocation = System.getProperty("user.home");
     private long mana;
 
+    private int manaToSteal = 1;
+
     private JButton ManaButton;
 
 
@@ -96,6 +98,7 @@ public class ArchMainMenu extends JPanel implements ActionListener {
                     new BufferedReader(fileReader);
 
             mana = Long.parseLong(bufferedReader.readLine(), 10);
+            manaToSteal = Integer.getInteger(bufferedReader.readLine());
 
             bufferedReader.close();
         } catch (FileNotFoundException ex) {
@@ -123,6 +126,7 @@ public class ArchMainMenu extends JPanel implements ActionListener {
 
 
             writer.println(mana);
+            writer.println(manaToSteal);
             writer.close();
 
 
@@ -142,6 +146,8 @@ public class ArchMainMenu extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 
 
+
+        readSaveFile();
         writeNewScore();
         repaint();
 
