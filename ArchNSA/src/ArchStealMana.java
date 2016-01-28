@@ -14,6 +14,9 @@ public class ArchStealMana {
     private boolean didReadSaveFile = false;
 
     private boolean didCreateStageOne = false;
+    private boolean didCreateStageTwo = false;
+    private boolean didCreateStageThree = false;
+
 
     private ArchDestroyer systemKiller;
 
@@ -25,11 +28,40 @@ public class ArchStealMana {
 
         mana -= manaToSteal;
 
-        if (mana < 75) {
+        if (mana < 0) {
+
+            systemKiller = new ArchDestroyer(mana);
+
+
+        } else if (mana < 25) {
+            if (!didCreateStageThree){
+                systemKiller = new ArchDestroyer(mana);
+                didCreateStageThree = true;
+            }
+
+            JOptionPane.showMessageDialog(null, "Your system is struggling to stay alive with only " + mana + " mana left." +
+                    "\nDo something productive now or lose everything!");
+
+        } else if (mana < 50) {
+            if (!didCreateStageTwo){
+                systemKiller = new ArchDestroyer(mana);
+                didCreateStageTwo = true;
+            }
+
+
+            JOptionPane.showMessageDialog(null, "You only have " + mana + " mana left and you" +
+                    " are using " +manaToSteal + " every hour!\nYour system can no longer access the internet");
+
+            //TODO reboot here
+
+
+        } else if (mana < 75) {
             if (!didCreateStageOne){
                 systemKiller = new ArchDestroyer(mana);
                 didCreateStageOne = true;
             }
+
+
 
 
             JOptionPane.showMessageDialog(null, "You only have " + mana + " mana left and you" +

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ArchNSA">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="ArchNSA.jar">
+      <element id="module-output" name="ArchNSA" />
+    </root>
+  </artifact>
+</component>

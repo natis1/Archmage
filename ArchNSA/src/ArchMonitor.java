@@ -3,15 +3,13 @@ import javafx.scene.shape.Arc;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Created by scc on 1/22/2016.
- */
+
 public class ArchMonitor {
 
     private long mana;
 
 
-    private final long HOUR = 100000;//3600000
+    private final long HOUR = 3600000;//3600000
     private final ArchStealMana ArchThief = new ArchStealMana();
 
 

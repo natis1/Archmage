@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ArchMage">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="ArchMage.jar">
+      <element id="module-output" name="Archmage" />
+    </root>
+  </artifact>
+</component>

