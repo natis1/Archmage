@@ -35,7 +35,7 @@ public class ArchImage {
             String dataLocation = System.getProperty("user.home");
             if (dataLocation.contains("C:\\")){
 
-                dataLocation += "appdata/desktopbkg.png";
+                dataLocation += "/appdata/desktopbkg.png";
                 OS = 1;
             } else {
                 //help
