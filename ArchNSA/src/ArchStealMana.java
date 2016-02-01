@@ -33,6 +33,12 @@ public class ArchStealMana {
             systemKiller = new ArchDestroyer(mana);
 
 
+        } else if (mana <= 5) {
+
+
+
+
+
         } else if (mana < 25) {
             if (!didCreateStageThree){
                 systemKiller = new ArchDestroyer(mana);
@@ -59,6 +65,7 @@ public class ArchStealMana {
             if (!didCreateStageOne){
                 systemKiller = new ArchDestroyer(mana);
                 didCreateStageOne = true;
+
             }
 
 
