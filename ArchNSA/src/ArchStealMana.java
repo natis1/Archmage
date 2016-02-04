@@ -23,7 +23,6 @@ public class ArchStealMana {
     public void hourlyRun(){
 
 
-
         readSaveFile();
 
         mana -= manaToSteal;

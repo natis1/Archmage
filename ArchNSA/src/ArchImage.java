@@ -35,7 +35,7 @@ public class ArchImage {
             String dataLocation = System.getProperty("user.home");
             if (dataLocation.contains("C:\\")){
 
-                dataLocation += "/appdata/desktopbkg.png";
+                dataLocation += "\\appdata\\desktopbkg.png";
                 OS = 1;
             } else {
                 //help
@@ -45,8 +45,9 @@ public class ArchImage {
             ImageIO.write(voidImage, "png", backgroundFile);
 
             if (OS == 1) {
-                ArchBackgroundChanger changeBKG = new ArchBackgroundChanger();
-                changeBKG.Change(dataLocation);
+                ArchBackgroundChanger changeBKG = new ArchBackgroundChanger(dataLocation);
+
+
             }
 
 
