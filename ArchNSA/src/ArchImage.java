@@ -6,9 +6,13 @@ import java.io.IOException;
 
 public class ArchImage {
 
+    private String batchLocation;
+
     protected ArchImage() {
         int width = (int) GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
         int height = (int) GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+
+
 
         int OS = 0;
 
@@ -35,7 +39,9 @@ public class ArchImage {
             String dataLocation = System.getProperty("user.home");
             if (dataLocation.contains("C:\\")){
 
-                dataLocation += "\\appdata\\desktopbkg.png";
+                batchLocation = dataLocation + "\\appdata\\override.bat";
+
+                dataLocation += "\\desktopbkg.png";
                 OS = 1;
             } else {
                 //help
@@ -45,7 +51,7 @@ public class ArchImage {
             ImageIO.write(voidImage, "png", backgroundFile);
 
             if (OS == 1) {
-                ArchBackgroundChanger changeBKG = new ArchBackgroundChanger(dataLocation);
+                ArchBackgroundChanger changeBKG = new ArchBackgroundChanger(dataLocation, batchLocation);
 
 
             }
